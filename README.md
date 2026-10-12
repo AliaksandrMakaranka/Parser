@@ -1,52 +1,49 @@
 # WebParser
 
-Этот проект — простой парсер новостей с сайта https://www.pathofexile.com/ на Java с использованием библиотеки Jsoup.
+Console web scraper in Java: collects news headlines and links from a website and saves them to a file. Built as a base for price, news and competitor monitoring tools.
 
-## Как использовать
+**Stack:** Java 17 · Jsoup · SLF4J + Logback · JUnit 5 · Maven
 
-1. Убедитесь, что у вас установлен JDK 11+ и Maven.
-2. Соберите и запустите проект:
+## Features
 
-```
+Interactive menu after start:
+
+1. **Parse first news item**: shows the headline and link of the latest news
+2. **Parse all news**: collects every headline on the page and saves them to `news_results.txt`
+3. **View results**: prints the saved file
+4. **Exit**
+
+The demo target is the news page of [pathofexile.com](https://www.pathofexile.com/).
+
+## Running
+
+Requirements: JDK 17+, Maven.
+
+```bash
+git clone https://github.com/AliaksandrMakaranka/Parser.git
+cd Parser
 mvn compile exec:java -Dexec.mainClass=webparser.App
 ```
 
-## Функционал
+Tests:
 
-После запуска вы увидите интерактивное меню с опциями:
-1. Парсить первую новость - показывает заголовок и ссылку на первую новость
-2. Парсить все новости - парсит все новости и сохраняет их в файл
-3. Просмотреть результаты - показывает содержимое файла с результатами
-4. Выход - завершает работу программы
-
-## Результаты
-
-Результаты парсинга сохраняются в файл `news_results.txt` в корневой директории проекта. Каждая строка содержит заголовок новости и ссылку на неё.
-
-## Тесты
-
-Для запуска тестов:
-
-```
+```bash
 mvn test
 ```
 
-## Описание
+## Structure
 
-- Основная логика парсинга вынесена в класс `Parser`.
-- Метод `parseNewsTitleAndHref` возвращает заголовок и ссылку на первую новость.
-- Метод `parseAllNews` парсит все новости на странице.
-- Метод `saveResultsToFile` сохраняет результаты в файл.
-- Логирование реализовано с помощью SLF4J и Logback.
+| Class | Responsibility |
+|---|---|
+| `App` | Interactive console menu |
+| `Parser` | Downloads the page and extracts headlines and links (Jsoup) |
+| `ParseResult` | Holds one result: title and URL |
+| `FileSaver` | Writes results to a file |
 
-## Структура
+Logs are written to `logs/webparser.log`; the level is set in `src/main/resources/logback.xml`.
 
-- `src/main/java/webparser/App.java` — основной класс с интерактивным меню.
-- `src/main/java/webparser/Parser.java` — класс для парсинга новостей.
-- `src/main/java/webparser/ParseResult.java` — класс для хранения результатов парсинга.
-- `src/main/java/webparser/FileSaver.java` — класс для сохранения результатов в файл.
-- `src/test/java/webparser/AppTest.java` — тесты для парсера.
+---
 
-## Логи
+### 🇵🇱 Opis
 
-Логи сохраняются в файл `logs/webparser.log`. Уровень логирования можно настроить в `src/main/resources/logback.xml`.
+Parser stron WWW w Javie (Jsoup): pobiera nagłówki i linki do wiadomości i zapisuje je do pliku. Baza pod narzędzia do monitoringu cen, wiadomości i konkurencji.

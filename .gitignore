@@ -136,3 +136,7 @@ buildNumber.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij+all,maven
 
+
+# Generated output
+news_results.txt
+logs/
